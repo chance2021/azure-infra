@@ -1,0 +1,5 @@
+resource_group_name  = "chance-test-aks"
+storage_account_name = "chance-test-standard-lrs-account"
+container_name       = "chancetesttfstate"
+prefix               = "chancetest"
+location             = "canadacentral"
