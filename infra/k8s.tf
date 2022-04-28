@@ -54,9 +54,15 @@ resource "azurerm_kubernetes_cluster" "compute" {
   role_based_access_control {
     enabled = var.aks_enable_rbac
   }
+
 #  api_server_authorized_ip_ranges = [var.user_ip,
 #  var.virtual_network_address_prefix]
   depends_on = [azurerm_application_gateway.prod, azurerm_subnet.kubesubnet]
+
   tags       = var.tags
+
+  identity {
+    type = "SystemAssigned"
+  }
 }
 
