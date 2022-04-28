@@ -12,4 +12,4 @@ resource "azurerm_resource_group" "network" {
   name     = local.network_resource_group_name
   location = var.location
   tags     = var.tags
-
+}

@@ -1,7 +1,7 @@
 resource "local_file" "kubeconfig" {
-  depends_on   = [azurerm_kubernetes_cluster.cluster]
+  depends_on   = [azurerm_kubernetes_cluster.compute]
   filename     = "kubeconfig"
-  content      = azurerm_kubernetes_cluster.cluster.kube_config_raw
+  content      = azurerm_kubernetes_cluster.compute.kube_config_raw
 }
 
 output "compute_resource_group" {
@@ -12,9 +12,9 @@ output "cluster_name" {
   value = azurerm_kubernetes_cluster.compute.name
 }
 
-output "storage_account_name" {
-  value = azurerm_storage_account.prod.name
-}
+#output "storage_account_name" {
+#  value = azurerm_storage_account.prod.name
+#}
 
 output "client_key" {
     value = azurerm_kubernetes_cluster.compute.kube_config.0.client_key

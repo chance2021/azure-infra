@@ -31,19 +31,19 @@ resource "azurerm_virtual_network" "prod" {
   depends_on = [azurerm_network_security_group.prod, azurerm_network_security_rule.appgw, azurerm_network_security_rule.http, azurerm_network_security_rule.https]
 }
 
-resource "azurerm_subnet" "appgwsubnet" {
-  name                 = var.appgw_subnet_name
-  resource_group_name  = azurerm_resource_group.network.name
-  address_prefix       = var.app_gateway_subnet_address_prefix
-  virtual_network_name = azurerm_virtual_network.prod.name
-  depends_on           = [azurerm_virtual_network.prod]
-}
-
-resource "azurerm_subnet_network_security_group_association" "appgwsubnet" {
-  subnet_id                 = azurerm_subnet.appgwsubnet.id
-  network_security_group_id = azurerm_network_security_group.prod.id
-  depends_on                = [azurerm_subnet.appgwsubnet, azurerm_network_security_group.prod, azurerm_network_security_rule.http, azurerm_network_security_rule.https]
-}
+#resource "azurerm_subnet" "appgwsubnet" {
+#  name                 = var.appgw_subnet_name
+#  resource_group_name  = azurerm_resource_group.network.name
+#  address_prefix       = var.app_gateway_subnet_address_prefix
+#  virtual_network_name = azurerm_virtual_network.prod.name
+#  depends_on           = [azurerm_virtual_network.prod]
+#}
+#
+#resource "azurerm_subnet_network_security_group_association" "appgwsubnet" {
+#  subnet_id                 = azurerm_subnet.appgwsubnet.id
+#  network_security_group_id = azurerm_network_security_group.prod.id
+#  depends_on                = [azurerm_subnet.appgwsubnet, azurerm_network_security_group.prod, azurerm_network_security_rule.http, azurerm_network_security_rule.https]
+#}
 
 resource "azurerm_subnet" "kubesubnet" {
   name                                           = var.compute_subnet_name

@@ -79,10 +79,6 @@ locals {
   app_gateway_subnet_name        = var.appgw_subnet_name
 }
 
-variable "node_count" {
-  description = "The number of agent nodes for the cluster."
-  default     = 1
-}
 
 ## Network
 
@@ -111,6 +107,9 @@ variable "app_gateway_subnet_address_prefix" {
   default     = "15.1.0.0/16"
 }
 
+variable "user_ip" {
+  description = "User IP address"
+}
 ## Compute Config
 
 variable "node_count" {
@@ -120,7 +119,7 @@ variable "node_count" {
 
 variable "compute_size" {
   description = "VM SKU"
-  default     = "Standard_D2s_v2"
+  default     = "standard_ds2_v2"
 }
 
 variable "os_disk_size" {
